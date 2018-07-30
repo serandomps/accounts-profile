@@ -3,15 +3,15 @@ var serand = require('serand');
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-profile'));
 
-module.exports = function (sandbox, fn, options) {
+module.exports = function (sandbox, options, done) {
     dust.render('accounts-profile', {
         username: options.username
     }, function (err, out) {
         if (err) {
-            return;
+            return done(err);
         }
         sandbox.append(out);
-        fn(false, function () {
+        done(null, function () {
             $('.accounts-profile', sandbox).remove();
         });
     });
