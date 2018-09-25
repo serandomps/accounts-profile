@@ -3,10 +3,9 @@ var serand = require('serand');
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-profile'));
 
-module.exports = function (sandbox, options, done) {
-    dust.render('accounts-profile', {
-        username: options.username
-    }, function (err, out) {
+module.exports = function (ctx, sandbox, options, done) {
+    options = options || {};
+    dust.render('accounts-profile', options, function (err, out) {
         if (err) {
             return done(err);
         }
