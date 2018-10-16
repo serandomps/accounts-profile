@@ -1,5 +1,69 @@
-<div class="accounts-profile panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Welcome {username}</h3>
+<div class="accounts-profile">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <a class="panel-title" href="{home}">Personal Details</a>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group avatar">
+                            <i class="fas fa-user-circle fa-9x"></i>
+                            <h4>{email}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group source firstname has-feedback" data-name="firstname">
+                                    <input type="text" class="form-control firstname" placeholder="First Name"
+                                           value="{firstname}">
+                                    <span class="form-control-feedback hidden"></span>
+                                    <span class="help-block hidden"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group source lastname has-feedback" data-name="lastname">
+                                    <input type="text" class="form-control lastname" placeholder="Last Name"
+                                           value="{lastname}">
+                                    <span class="form-control-feedback hidden"></span>
+                                    <span class="help-block hidden"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group source alias has-feedback" data-name="alias">
+                            <input type="text" class="form-control alias" placeholder="Alias"
+                                   value="{alias}">
+                            <span class="form-control-feedback hidden"></span>
+                            <span class="help-block hidden"></span>
+                        </div>
+                        <div class="form-group source phones has-feedback" data-name="phones">
+                            <input type="text" class="form-control phones" placeholder="Phone"
+                                   value="{phones}">
+                            <span class="form-control-feedback hidden"></span>
+                            <span class="help-block hidden"></span>
+                        </div>
+                        <h4>Change Password</h4>
+                        <div class="form-group source otp has-feedback" data-name="otp">
+                            <input type="password" class="form-control otp" placeholder="Old password">
+                            <span class="form-control-feedback hidden"></span>
+                            <span class="help-block hidden"></span>
+                        </div>
+                        <div class="form-group source password has-feedback" data-name="password">
+                            <input type="password" class="form-control password" placeholder="New password">
+                            <span class="form-control-feedback hidden"></span>
+                            <span class="help-block hidden"></span>
+                        </div>
+                    </div>
+                </div>
+                <h4>Address</h4>
+                <div class="form-group source location has-feedback" data-name="location"></div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-default update">Update</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

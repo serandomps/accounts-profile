@@ -1,3 +1,7 @@
-.accounts-profile .form-control {
-    margin-bottom: 10px;
+.accounts-profile .avatar {
+    text-align: center;
+}
+
+.accounts-profile .avatar img {
+    border-radius: 50% !important;
 }
