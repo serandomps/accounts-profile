@@ -1,6 +1,9 @@
 .accounts-profile .avatar {
     text-align: center;
 }
+.accounts-profile .avatar .upload {
+    cursor: pointer;
+}
 
 .accounts-profile .avatar img {
     border-radius: 50% !important;
