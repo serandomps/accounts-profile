@@ -135,6 +135,9 @@ var configs = {
             });
         },
         create: function (context, value, done) {
+            if (!value) {
+                return done();
+            }
             context.eventer.emit('create', value, function (err, errors, location) {
                 done(err, errors, location);
             });
