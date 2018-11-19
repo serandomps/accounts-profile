@@ -11,7 +11,11 @@
                     <div class="col-md-6">
                         <div class="form-group avatar">
                             <div class="upload">
+                                {#_.avatar}
+                                <img src="{_.avatar}"/>
+                                {:else}
                                 <i class="fas fa-user-circle fa-9x"></i>
+                                {/_.avatar}
                             </div>
                             <input type="file" multiple="" name="content" class="fileupload hidden">
                             <h4>{email}</h4>

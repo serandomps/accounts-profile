@@ -1,6 +1,7 @@
 var dust = require('dust')();
 var serand = require('serand');
 var utils = require('utils');
+var user = require('user');
 var form = require('form');
 var locate = require('locate');
 
@@ -213,53 +214,9 @@ var configs = {
     }
 };
 
-var findUser = function (id, done) {
-    $.ajax({
-        method: 'GET',
-        url: utils.resolve('accounts:///apis/v/users/' + id),
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-            done(null, data);
-        },
-        error: function (xhr, status, err) {
-            done(err);
-        }
-    });
-};
-
-var updateUser = function (user, data, done) {
-    var otp = data.otp;
-    delete data.otp;
-    _.merge(user, data);
-
-    var headers = {};
-    otp = otp ? otp.value : null;
-    if (otp) {
-        headers['X-OTP'] = otp;
-    }
-    $.ajax({
-        method: 'PUT',
-        url: utils.resolve('accounts:///apis/v/users/' + user.id),
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(user),
-        headers: headers,
-        success: function (data) {
-            done(null, data);
-        },
-        error: function (xhr, status, err) {
-            if (xhr.status === 401) {
-                return done(null, 'Old password you entered is incorrect');
-            }
-            done(err);
-        }
-    });
-};
-
 module.exports = function (ctx, sandbox, options, done) {
     options = options || {};
-    findUser(ctx.user.id, function (err, user) {
+    user.findOne(ctx.user.id, function (err, user) {
         if (err) {
             return done(err);
         }
