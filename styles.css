@@ -1,10 +1,4 @@
-.accounts-profile .avatar {
-    text-align: center;
-}
-.accounts-profile .avatar .upload {
-    cursor: pointer;
-}
-
-.accounts-profile .avatar img {
-    border-radius: 50% !important;
+.accounts-profile .avatar .preview .rounded-circle {
+    width: 160px;
+    height: 160px;
 }

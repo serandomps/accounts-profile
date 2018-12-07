@@ -83,7 +83,7 @@ var configs = {
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify({
-                    name: 'password-update',
+                    name: 'accounts-update',
                     password: value
                 }),
                 success: function (data) {
@@ -199,7 +199,7 @@ var configs = {
                 if (err) {
                     return console.error(err);
                 }
-                $('.upload', el).html(file.preview);
+                $('.preview', el).html($(file.preview).addClass('rounded-circle'));
             }).prop('disabled', !$.support.fileInput)
                 .parent().addClass($.support.fileInput ? undefined : 'disabled');
             done(null, context);
@@ -214,24 +214,28 @@ var configs = {
     }
 };
 
-module.exports = function (ctx, sandbox, options, done) {
+module.exports = function (ctx, container, options, done) {
+    var sandbox = container.sandbox;
     options = options || {};
-    user.findOne(ctx.user.id, function (err, user) {
+    user.findOne(ctx.user.id, function (err, usr) {
         if (err) {
             return done(err);
         }
-        dust.render('accounts-profile', user, function (err, out) {
+        dust.render('accounts-profile', {
+            id: container.id,
+            user: usr
+        }, function (err, out) {
             if (err) {
                 return done(err);
             }
             var elem = sandbox.append(out);
             var frm = form.create(elem, configs);
-            frm.render(ctx, user, function (err) {
+            frm.render(ctx, usr, function (err) {
                 if (err) {
                     return done(err);
                 }
-                var update = $('.accounts-profile .update', elem);
-                sandbox.on('click', '.accounts-profile .update', function (e) {
+                var update = $('.update', elem);
+                sandbox.on('click', '.update', function (e) {
                     frm.find(function (err, data) {
                         if (err) {
                             return console.error(err);
@@ -266,7 +270,7 @@ module.exports = function (ctx, sandbox, options, done) {
                                         });
                                         return;
                                     }
-                                    updateUser(user, data, function (err) {
+                                    user.update(usr, data, function (err) {
                                         if (err) {
                                             return console.error(err);
                                         }
@@ -279,7 +283,7 @@ module.exports = function (ctx, sandbox, options, done) {
                     return false;
                 });
                 done(null, function () {
-                    $('.accounts-profile', sandbox).remove();
+                    sandbox.remove();
                 });
             });
         });

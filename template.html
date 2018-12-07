@@ -1,76 +1,77 @@
-<div class="accounts-profile">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="panel-title" href="{home}">Personal Details</a>
-            </h3>
-        </div>
-        <div class="panel-body">
-            <form role="form">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group avatar">
-                            <div class="upload">
-                                {#_.avatar}
-                                <img src="{_.avatar}"/>
-                                {:else}
-                                <i class="fas fa-user-circle fa-9x"></i>
-                                {/_.avatar}
-                            </div>
-                            <input type="file" multiple="" name="content" class="fileupload hidden">
-                            <h4>{email}</h4>
+<div class="card">
+    <div class="card-header">
+        Edit Profile
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="avatar col-md-4 order-md-2 mb-4">
+                <div class="preview text-center">
+                    {#user._.avatar}
+                    <img class="rounded-circle" src="{user._.avatar}" alt="Picture"/>
+                    {:else}
+                    <i class="fas fa-user-circle fa-9x text-muted"></i>
+                    {/user._.avatar}
+                </div>
+                <div class="text-center mt-4">
+                    <input type="file" multiple="" name="content" class="fileupload hidden">
+                    <button type="button" class="upload btn btn-secondary">Change</button>
+                    {#user._.avatar}
+                    <button type="button" class="btn btn-danger ml-1">Delete</button>
+                    {/user._.avatar}
+                </div>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <form class="needs-validation" novalidate>
+                    <h4 class="mb-3">Personal Details</h4>
+
+                    <div class="source email mb-3" data-name="email">
+                        <label for="email-{id}">Email</label>
+                        <input type="email" class="form-control" id="email-{id}" placeholder="Email"
+                               value="{user.email}" readonly>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="source firstname col-md-6 mb-3" data-name="firstname">
+                            <label for="firstname-{id}">First Name</label>
+                            <input type="text" class="form-control" id="firstname-{id}" placeholder="First Name"
+                                   value="{user.firstname}" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="source lastname col-md-6 mb-3" data-name="lastname">
+                            <label for="lastname-{id}">Last Name</label>
+                            <input type="text" class="form-control" id="lastname-{id}" placeholder="Last Name"
+                                   value="{user.lastname}" required>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group source firstname has-feedback" data-name="firstname">
-                                    <input type="text" class="form-control firstname" placeholder="First Name"
-                                           value="{firstname}">
-                                    <span class="form-control-feedback hidden"></span>
-                                    <span class="help-block hidden"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group source lastname has-feedback" data-name="lastname">
-                                    <input type="text" class="form-control lastname" placeholder="Last Name"
-                                           value="{lastname}">
-                                    <span class="form-control-feedback hidden"></span>
-                                    <span class="help-block hidden"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group source alias has-feedback" data-name="alias">
-                            <input type="text" class="form-control alias" placeholder="Alias"
-                                   value="{alias}">
-                            <span class="form-control-feedback hidden"></span>
-                            <span class="help-block hidden"></span>
-                        </div>
-                        <div class="form-group source phones has-feedback" data-name="phones">
-                            <input type="text" class="form-control phones" placeholder="Phone"
-                                   value="{phones}">
-                            <span class="form-control-feedback hidden"></span>
-                            <span class="help-block hidden"></span>
-                        </div>
-                        <h4>Change Password</h4>
-                        <div class="form-group source otp has-feedback" data-name="otp">
-                            <input type="password" class="form-control otp" placeholder="Old password">
-                            <span class="form-control-feedback hidden"></span>
-                            <span class="help-block hidden"></span>
-                        </div>
-                        <div class="form-group source password has-feedback" data-name="password">
-                            <input type="password" class="form-control password" placeholder="New password">
-                            <span class="form-control-feedback hidden"></span>
-                            <span class="help-block hidden"></span>
-                        </div>
+
+                    <div class="source phones mb-5" data-name="phones">
+                        <label for="phones-{id}">Phone</label>
+                        <input type="text" class="form-control" id="phones-{id}" placeholder="Phone"
+                               value="{user.phones[0]}" required>
+                        <div class="invalid-feedback"></div>
                     </div>
-                </div>
-                <h4>Address</h4>
-                <div class="form-group source location has-feedback" data-name="location"></div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-default update">Update</button>
-                </div>
-            </form>
+
+                    <h4 class="mb-3">Change Password</h4>
+                    <div class="source otp mb-3" data-name="otp">
+                        <label for="otp-{id}">Old Password</label>
+                        <input type="password" class="form-control" id="otp-{id}" placeholder="Old Password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="source password mb-5" data-name="password">
+                        <label for="password-{id}">New Password</label>
+                        <input type="password" class="form-control" id="password-{id}" placeholder="New Password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <h4 class="mb-3">Address</h4>
+                    <div class="source location mb-3" data-name="location"></div>
+
+                    <button class="update btn btn-secondary btn-block mb-10" type="button">Update</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
