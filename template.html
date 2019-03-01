@@ -25,51 +25,51 @@
                     <h4 class="mb-3">Personal Details</h4>
 
                     <div class="source email mb-3" data-name="email">
-                        <label for="email-{id}">Email</label>
-                        <input type="email" class="form-control" id="email-{id}" placeholder="Email"
+                        <label for="email-{_.container}">Email</label>
+                        <input type="email" class="form-control" id="email-{_.container}" placeholder="Email"
                                value="{user.email}" readonly>
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <div class="source alias mb-3" data-name="alias">
-                        <label for="alias-{id}">Alias</label>
-                        <input type="alias" class="form-control" id="alias-{id}" placeholder="Alias"
+                        <label for="alias-{_.container}">Alias</label>
+                        <input type="alias" class="form-control" id="alias-{_.container}" placeholder="Alias"
                                value="{user.alias}" required>
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <div class="row">
                         <div class="source firstname col-md-6 mb-3" data-name="firstname">
-                            <label for="firstname-{id}">First Name</label>
-                            <input type="text" class="form-control" id="firstname-{id}" placeholder="First Name"
+                            <label for="firstname-{_.container}">First Name</label>
+                            <input type="text" class="form-control" id="firstname-{_.container}" placeholder="First Name"
                                    value="{user.firstname}" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="source lastname col-md-6 mb-3" data-name="lastname">
-                            <label for="lastname-{id}">Last Name</label>
-                            <input type="text" class="form-control" id="lastname-{id}" placeholder="Last Name"
+                            <label for="lastname-{_.container}">Last Name</label>
+                            <input type="text" class="form-control" id="lastname-{_.container}" placeholder="Last Name"
                                    value="{user.lastname}" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
                     <div class="source phones mb-5" data-name="phones">
-                        <label for="phones-{id}">Phone</label>
-                        <input type="text" class="form-control" id="phones-{id}" placeholder="Phone"
+                        <label for="phones-{_.container}">Phone</label>
+                        <input type="text" class="form-control" id="phones-{_.container}" placeholder="Phone"
                                value="{user.phones[0]}" required>
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <h4 class="mb-3">Change Password</h4>
                     <div class="source otp mb-3" data-name="otp">
-                        <label for="otp-{id}">Old Password</label>
-                        <input type="password" class="form-control" id="otp-{id}" placeholder="Old Password">
+                        <label for="otp-{_.container}">Old Password</label>
+                        <input type="password" class="form-control" id="otp-{_.container}" placeholder="Old Password">
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <div class="source password mb-5" data-name="password">
-                        <label for="password-{id}">New Password</label>
-                        <input type="password" class="form-control" id="password-{id}" placeholder="New Password">
+                        <label for="password-{_.container}">New Password</label>
+                        <input type="password" class="form-control" id="password-{_.container}" placeholder="New Password">
                         <div class="invalid-feedback"></div>
                     </div>
 

@@ -128,7 +128,10 @@ var configs = {
         },
         render: function (ctx, vform, data, value, done) {
             var options = _.isString(value) ? {user: data.user, location: value} : value;
-            locate({}, $('.location', vform.elem), options, function (err, eventer) {
+            locate({}, {
+                id: vform.id,
+                sandbox: $('.location', vform.elem)
+            }, options, function (err, eventer) {
                 if (err) {
                     return done(err);
                 }
@@ -225,14 +228,16 @@ module.exports = function (ctx, container, options, done) {
             return done(err);
         }
         dust.render('accounts-profile', {
-            id: container.id,
+            _: {
+                container: container.id
+            },
             user: usr
         }, function (err, out) {
             if (err) {
                 return done(err);
             }
             var elem = sandbox.append(out);
-            var frm = form.create(elem, configs);
+            var frm = form.create(container.id, elem, configs);
             frm.render(ctx, usr, function (err) {
                 if (err) {
                     return done(err);
