@@ -4,25 +4,14 @@ var utils = require('utils');
 var user = require('user');
 var form = require('form');
 var locate = require('locate');
+var contacts = require('contacts');
 
 var BINARY_API = utils.resolve('accounts:///apis/v/binaries');
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-profile'));
 
 var configs = {
-    firstname: {
-        find: function (context, source, done) {
-            done(null, $('input', source).val());
-        },
-        validate: function (context, data, value, done) {
-            done(null, null, value);
-        },
-        update: function (context, source, error, value, done) {
-            $('input', source).val(value);
-            done();
-        }
-    },
-    lastname: {
+    name: {
         find: function (context, source, done) {
             done(null, $('input', source).val());
         },
@@ -118,36 +107,60 @@ var configs = {
     },
     location: {
         find: function (context, source, done) {
-            context.eventer.emit('find', done);
+            context.find(done);
         },
         validate: function (context, data, value, done) {
-            context.eventer.emit('validate', value, done);
+            context.validate(value, done);
         },
         update: function (context, source, error, value, done) {
-            context.eventer.emit('update', error, value, done);
+            context.update(error, value, done);
         },
         render: function (ctx, vform, data, value, done) {
             var options = _.isString(value) ? {user: data.user, location: value} : value;
             locate({}, {
                 id: vform.id,
                 sandbox: $('.location', vform.elem)
-            }, options, function (err, eventer) {
+            }, options, function (err, o) {
                 if (err) {
                     return done(err);
                 }
-                eventer.on('change', function (location, done) {
-                    done();
-                });
-                done(null, {eventer: eventer});
+                done(null, o);
             });
         },
         create: function (context, value, done) {
             if (!value) {
                 return done();
             }
-            context.eventer.emit('create', value, function (err, errors, location) {
-                done(err, errors, location);
+            context.create(value, done);
+        }
+    },
+    contact: {
+        find: function (context, source, done) {
+            context.find(done);
+        },
+        validate: function (context, data, value, done) {
+            context.validate(value, done);
+        },
+        update: function (context, source, error, value, done) {
+            context.update(error, value, done);
+        },
+        render: function (ctx, vform, data, value, done) {
+            var options = _.isString(value) ? {user: data.user, contact: value} : value;
+            contacts({}, {
+                id: vform.id,
+                sandbox: $('.contact', vform.elem)
+            }, options, function (err, o) {
+                if (err) {
+                    return done(err);
+                }
+                done(null, o);
             });
+        },
+        create: function (context, value, done) {
+            if (!value) {
+                return done();
+            }
+            context.create(value, done);
         }
     },
     avatar: {

@@ -12,6 +12,7 @@
         "serandomps/utils": "master",
         "serandomps/user": "master",
         "serandomps/form": "master",
-        "serandomps/locate": "master"
+        "serandomps/locate": "master",
+        "serandomps/contacts": "master"
     }
 }
